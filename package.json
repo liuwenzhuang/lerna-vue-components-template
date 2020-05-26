@@ -6,15 +6,15 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lerna-create": "node ./scripts/lerna/create.js"
+    "lerna-create": "node ./scripts/lerna/create.js",
+    "lerna-publish": "lerna publish --skip-git"
   },
-  "dependencies": {
-    "core-js": "^3.6.4",
-    "vue": "^2.6.11",
-    "vue-class-component": "^7.2.3",
-    "vue-property-decorator": "^8.4.1"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
+    "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-commonjs": "^11.1.0",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "@vue/cli-plugin-babel": "~4.3.0",
@@ -24,7 +24,17 @@
     "@vue/eslint-config-typescript": "^5.0.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "lerna": "^3.22.0",
+    "rimraf": "^3.0.2",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "rollup-plugin-vue": "^5.1.6",
     "typescript": "~3.8.3",
     "vue-template-compiler": "^2.6.11"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^8.4.1"
   }
 }

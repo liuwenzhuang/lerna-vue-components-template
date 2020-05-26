@@ -19,6 +19,7 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
+    "prepublish": "rimraf dist && yarn build",
     "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
     "build:umd": "rollup --config rollup.config.js --format umd --file dist/product-navigation.umd.js",
     "build:es": "rollup --config rollup.config.js --format es --file dist/product-navigation.esm.js",
