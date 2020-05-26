@@ -1,0 +1,46 @@
+{
+  "name": "@lwz-fe/product-topbar",
+  "version": "1.1.1",
+  "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
+  "keywords": [],
+  "author": "刘文壮 <liuwenzhuang@corp.netease.com>",
+  "license": "MIT",
+  "main": "dist/product-topbar.umd.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuwenzhuang/lerna-vue-components-teplate.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "prepublish": "rimraf dist && yarn build",
+    "build": "yarn build:umd & yarn build:es & yarn build:unpkg",
+    "build:umd": "rollup --config rollup.config.js --format umd --file dist/product-topbar.umd.js",
+    "build:es": "rollup --config rollup.config.js --format es --file dist/product-topbar.esm.js",
+    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/product-topbar.min.js"
+  },
+  "bugs": {
+    "url": "https://github.com/liuwenzhuang/lerna-vue-components-teplate/issues"
+  },
+  "homepage": "https://github.com/liuwenzhuang/lerna-vue-components-teplate#readme",
+  "module": "dist/product-topbar.esm.js",
+  "unpkg": "dist/product-topbar.min.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@lwz-fe/product-navigation": "^1.1.0"
+  },
+  "gitHead": "1d8fd44696d4dea0e67760933c386324816d1db7",
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
+}
