@@ -1,12 +1,13 @@
 'use strict'
 
-const { camelCase } = require('lodash')
+const { camelCase, pick } = require('lodash')
 const path = require('path')
 const process = require('process')
 const { spawn } = require('child_process')
 const { copyFile, editPackageJson, clearDir } = require('./util')
 
-const packagesPath = path.resolve(__dirname, '../../packages')
+const rootPath = path.resolve(__dirname, '../../')
+const packagesPath = path.resolve(rootPath, './packages')
 
 // TODO: change to your own scope
 const scopeName = '@lwz-fe'
@@ -19,6 +20,21 @@ if (packageName.startsWith(`${scopeName}/`)) {
 } else {
   packageDirName = packageName
   packageName = `${scopeName}/${packageName}`
+}
+
+function rebuildYarnWorkspaces() {
+  const yarn = spawn('yarn', {
+    shell: true
+  })
+  yarn.stdout.on('data', data => {
+    console.log(`${data}`)
+  })
+  yarn.stderr.on('data', err => {
+    console.error(`${err}`)
+  })
+  yarn.on('close', code => {
+    console.log(`rebuild yarn workspaces exited with codee ${code}`)
+  })
 }
 
 function copyFiles(clearFirst) {
@@ -73,6 +89,8 @@ function copyFiles(clearFirst) {
     }
   )
 
+  const rootPackageJson = require(`${rootPath}/package.json`)
+  const devDependencies = rootPackageJson.devDependencies
   editPackageJson(
     path.resolve(packagesPath, `${packageDirName}/package.json`),
     {
@@ -91,9 +109,12 @@ function copyFiles(clearFirst) {
       publishConfig: {
         registry: 'https://registry.npmjs.org/',
         access: 'public'
-      }
+      },
+      devDependencies: pick(devDependencies, ['rimraf', 'rollup'])
     }
   )
+
+  rebuildYarnWorkspaces()
 }
 
 if (process.argv[3] === 'onlyCopy') {
@@ -110,7 +131,7 @@ if (process.argv[3] === 'onlyCopy') {
     console.error(`${err}`)
   })
   create.on('close', code => {
-    console.log(`lerna create ${packageName} exited woth code ${code}`)
+    console.log(`lerna create ${packageName} exited with code ${code}`)
     if (code === 0) {
       copyFiles(true)
     }

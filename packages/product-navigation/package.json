@@ -17,15 +17,26 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuwenzhuang/lerna-vue-components-teplate.git"
+  },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "prepublish": "rimraf dist && yarn build",
-    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "build": "yarn build:umd & yarn build:es & yarn build:unpkg",
     "build:umd": "rollup --config rollup.config.js --format umd --file dist/product-navigation.umd.js",
     "build:es": "rollup --config rollup.config.js --format es --file dist/product-navigation.esm.js",
     "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/product-navigation.min.js"
   },
+  "bugs": {
+    "url": "https://github.com/liuwenzhuang/lerna-vue-components-teplate/issues"
+  },
+  "homepage": "https://github.com/liuwenzhuang/lerna-vue-components-teplate#readme",
   "module": "dist/product-navigation.esm.js",
   "unpkg": "dist/product-navigation.min.js",
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  }
 }

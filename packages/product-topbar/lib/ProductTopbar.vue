@@ -1,30 +1,19 @@
 <template>
-  <div class="product-topbar">
-    {{ msg }}
-    <ProductNavigation msg="product navigation in product topbar" />
-  </div>
+  <div class="product-topbar">{{msg}}</div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import ProductNavigation from '@lwz-fe/product-navigation'
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component({
-  components: {
-    ProductNavigation
-  }
-})
+@Component
 export default class ProductTopbar extends Vue {
-  @Prop({
-    default: 'product-topbar'
-  })
-  private msg!: string
+  @Prop() private msg!: string;
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .product-topbar {
-  font-size: 16px;
+  /* styles here */
 }
 </style>

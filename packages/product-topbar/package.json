@@ -1,6 +1,6 @@
 {
   "name": "@lwz-fe/product-topbar",
-  "version": "1.1.1",
+  "version": "1.0.0",
   "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
   "keywords": [],
   "author": "刘文壮 <liuwenzhuang@corp.netease.com>",
@@ -36,11 +36,8 @@
   "module": "dist/product-topbar.esm.js",
   "unpkg": "dist/product-topbar.min.js",
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "@lwz-fe/product-navigation": "^1.1.0"
-  },
-  "gitHead": "1d8fd44696d4dea0e67760933c386324816d1db7",
   "devDependencies": {
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "rollup": "^2.6.1"
   }
 }

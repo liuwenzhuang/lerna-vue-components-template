@@ -1,4 +1,4 @@
-# lerna管理Vue组件库
+# lerna + Yarn Workspaces管理Vue组件库
 
 ## 创建模块
 

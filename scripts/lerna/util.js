@@ -34,18 +34,17 @@ function editPackageJson(source, data) {
     if (isObject(srcValue)) {
       return {
         ...objValue,
-        ...srcValue,
+        ...srcValue
       }
     }
   })
-  console.log(JSON.stringify(modifyInfo, null, 2))
-  fs.writeFile(`${source}`, JSON.stringify(modifyInfo, null, 2), (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    console.log(`rewrite ${source} done`)
-  })
+  try {
+    fs.writeFileSync(`${source}`, JSON.stringify(modifyInfo, null, 2))
+  } catch (err) {
+    console.error(err)
+    return
+  }
+  console.log(`rewrite ${source} done`)
 }
 
 function clearDir(dir) {
