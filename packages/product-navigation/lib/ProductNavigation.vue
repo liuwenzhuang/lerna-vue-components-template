@@ -12,7 +12,7 @@ export default class ProductNavigation extends Vue {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="less" scoped>
 .product-navigation {
   /* styles here */
 }

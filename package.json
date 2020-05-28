@@ -1,5 +1,5 @@
 {
-  "name": "lerna-vue-ts",
+  "name": "lerna-vue-components",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
   "devDependencies": {
     "@rollup/plugin-buble": "^0.21.3",
     "@rollup/plugin-commonjs": "^11.1.0",
+    "@types/mockjs": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "@vue/cli-plugin-babel": "~4.3.0",
@@ -23,13 +24,19 @@
     "@vue/cli-service": "~4.3.0",
     "@vue/eslint-config-typescript": "^5.0.2",
     "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^6.2.2",
     "lerna": "^3.22.0",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
+    "mockjs": "^1.1.0",
+    "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "rollup": "^2.6.1",
     "rollup-plugin-typescript2": "^0.27.0",
     "rollup-plugin-vue": "^5.1.6",
     "typescript": "~3.8.3",
+    "vue-cli-plugin-mock": "^0.0.10",
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
