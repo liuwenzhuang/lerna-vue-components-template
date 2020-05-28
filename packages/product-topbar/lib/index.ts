@@ -5,7 +5,7 @@ import ProductTopbar from './ProductTopbar.vue'
 function install(Vue) {
 	if (install.installed) return;
 	install.installed = true;
-	Vue.component('product-topbar', ProductNavigation)
+	Vue.component('product-topbar', ProductTopbar)
 }
 
 // Create module definition for Vue.use()

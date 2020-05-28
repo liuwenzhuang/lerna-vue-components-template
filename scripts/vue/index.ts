@@ -5,7 +5,7 @@ import __PACKAGE_CLASS_NAME__ from './__PACKAGE_CLASS_NAME__.vue'
 function install(Vue) {
 	if (install.installed) return;
 	install.installed = true;
-	Vue.component('__PACKAGE_NAME__', ProductNavigation)
+	Vue.component('__PACKAGE_NAME__', __PACKAGE_CLASS_NAME__)
 }
 
 // Create module definition for Vue.use()
