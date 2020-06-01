@@ -1,8 +1,9 @@
 <script lang="tsx">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import components from './components/'
 import { Layout, Menu, Icon } from 'ant-design-vue'
 import { CreateElement } from 'vue'
+import VueRouter from 'vue-router'
 
 @Component({
   components: {
@@ -15,12 +16,24 @@ import { CreateElement } from 'vue'
   },
 })
 export default class App extends Vue {
-  selectComponent = 'product-navigation'
+  compPath = 'product-navigation'
 
   onSelectComponent(item: any) {
+    if (this.compPath === item.key) {
+      return
+    }
     this.$router.push({
       path: `/${item.key}`,
     })
+  }
+
+  @Watch('$route', { immediate: true })
+  onRouterChange(route: any) {
+    const path = route.path
+    if (path === '/') {
+      return
+    }
+    this.compPath = path.split('/')[1]
   }
 
   render(h: CreateElement) {
@@ -37,7 +50,7 @@ export default class App extends Vue {
         >
           <a-menu
             mode="inline"
-            default-selected-keys={['product-navigation']}
+            default-selected-keys={[this.compPath]}
             onClick={this.onSelectComponent}
           >
             {components.map((component) => (
@@ -52,6 +65,7 @@ export default class App extends Vue {
             <div
               style={{
                 padding: '24px',
+                minHeight: '100%',
                 background: '#fff',
                 textAlign: 'center',
               }}
