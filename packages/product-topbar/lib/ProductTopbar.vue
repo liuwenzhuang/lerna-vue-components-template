@@ -1,13 +1,17 @@
 <template>
-  <div class="product-topbar">{{msg}}</div>
+  <div class="product-topbar">{{ msg }}</div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+<script lang="tsx">
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class ProductTopbar extends Vue {
-  @Prop() private msg!: string;
+  @Prop() private msg!: string
+
+  get columns() {
+    return <span>abc</span>
+  }
 }
 </script>
 

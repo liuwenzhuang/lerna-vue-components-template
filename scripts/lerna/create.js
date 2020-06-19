@@ -24,15 +24,15 @@ if (packageName.startsWith(`${scopeName}/`)) {
 
 function rebuildYarnWorkspaces() {
   const yarn = spawn('yarn', {
-    shell: true
+    shell: true,
   })
-  yarn.stdout.on('data', data => {
+  yarn.stdout.on('data', (data) => {
     console.log(`${data}`)
   })
-  yarn.stderr.on('data', err => {
+  yarn.stderr.on('data', (err) => {
     console.error(`${err}`)
   })
-  yarn.on('close', code => {
+  yarn.on('close', (code) => {
     console.log(`rebuild yarn workspaces exited with codee ${code}`)
   })
 }
@@ -57,6 +57,11 @@ function copyFiles(clearFirst) {
     path.resolve(packagesPath, `${packageDirName}/tsconfig.json`)
   )
 
+  copyFile(
+    path.resolve(__dirname, '../babel/babel.config.js'),
+    path.resolve(packagesPath, `${packageDirName}/babel.config.js`)
+  )
+
   let packageClassName = camelCase(packageDirName)
   packageClassName =
     packageClassName[0].toUpperCase() + packageClassName.slice(1)
@@ -64,7 +69,7 @@ function copyFiles(clearFirst) {
   copyFile(
     path.resolve(__dirname, '../rollup/rollup.config.js'),
     path.resolve(packagesPath, `${packageDirName}/rollup.config.js`),
-    data => {
+    (data) => {
       return data.replace('__PACKAGE_NAME__', packageClassName)
     }
   )
@@ -72,7 +77,7 @@ function copyFiles(clearFirst) {
   copyFile(
     path.resolve(__dirname, '../vue/Template.vue'),
     path.resolve(packagesPath, `${packageDirName}/lib/${packageClassName}.vue`),
-    data => {
+    (data) => {
       return data
         .replace(/__PACKAGE_CLASS_NAME__/g, packageClassName)
         .replace(/__PACKAGE_NAME__/g, packageDirName)
@@ -82,7 +87,7 @@ function copyFiles(clearFirst) {
   copyFile(
     path.resolve(__dirname, '../vue/index.ts'),
     path.resolve(packagesPath, `${packageDirName}/lib/index.ts`),
-    data => {
+    (data) => {
       return data
         .replace(/__PACKAGE_CLASS_NAME__/g, packageClassName)
         .replace(/__PACKAGE_NAME__/g, packageDirName)
@@ -99,7 +104,7 @@ function copyFiles(clearFirst) {
         build: 'yarn build:umd & yarn build:es & yarn build:unpkg',
         'build:umd': `rollup --config rollup.config.js --format umd --file dist/${packageDirName}.umd.js`,
         'build:es': `rollup --config rollup.config.js --format es --file dist/${packageDirName}.esm.js`,
-        'build:unpkg': `rollup --config rollup.config.js --format iife --file dist/${packageDirName}.min.js`
+        'build:unpkg': `rollup --config rollup.config.js --format iife --file dist/${packageDirName}.min.js`,
       },
       main: `dist/${packageDirName}.umd.js`,
       module: `dist/${packageDirName}.esm.js`,
@@ -108,9 +113,9 @@ function copyFiles(clearFirst) {
       files: ['dist'],
       publishConfig: {
         registry: 'https://registry.npmjs.org/',
-        access: 'public'
+        access: 'public',
       },
-      devDependencies: pick(devDependencies, ['rimraf', 'rollup'])
+      devDependencies: pick(devDependencies, ['rimraf', 'rollup']),
     }
   )
 
@@ -121,16 +126,16 @@ if (process.argv[3] === 'onlyCopy') {
   copyFiles(false)
 } else {
   const create = spawn('lerna', ['create', packageName, '-y'], {
-    shell: true
+    shell: true,
   })
 
-  create.stdout.on('data', data => {
+  create.stdout.on('data', (data) => {
     console.log(`${data}`)
   })
-  create.stderr.on('data', err => {
+  create.stderr.on('data', (err) => {
     console.error(`${err}`)
   })
-  create.on('close', code => {
+  create.on('close', (code) => {
     console.log(`lerna create ${packageName} exited with code ${code}`)
     if (code === 0) {
       copyFiles(true)

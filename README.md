@@ -24,3 +24,7 @@ $ yarn lerna-create package-name [onlyCopy]
 |packages/package-name/package.json|packages/package-name/package.json|重写一些配置脚本、入口文件等|
 
 > `package-name`指的是使用连字符的命名规则，`PackageName`指转换后的首字母大写的驼峰命名规则。
+
+## JSX支持
+
+`@vue/babel-preset-jsx`针对`ObjectMethod|ClassMethod`中存在着jsx部分的代码自动插入`h`(即createElement)，所以需要通过`@rollup/plugin-babel`进行处理。但要保证typescript转换过的代码还保留为`ObjectMethod|ClassMethod`格式（可以在tsconfig.json中指定target为ESNEXT）。
